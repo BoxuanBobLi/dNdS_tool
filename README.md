@@ -1,16 +1,14 @@
 
 ---
 
-# Sequence Processing Script
+# dN/dS Calculation Script
 
-This Python script processes FASTA files in different ways depending on the selected mode. It supports batch processing of large directories, single-file extraction, groupwise organization, and converting FASTA to a more readable format.
+This script calculates **dN/dS (nonsynonymous to synonymous substitution rate) ratios** using codon-aligned FASTA files. It supports pairwise and groupwise analyses for evolutionary comparisons.
 
-## Features
+## Modes
 
-* **large**: Processes all FASTA files in a given directory and writes each sequence to a separate file.
-* **single**: Extracts all records from a single FASTA file, writing each to a separate file using the record ID as the filename.
-* **groupwise**: Groups sequences in a single FASTA file by their prefix and writes grouped files to the output directory.
-* **readable**: Converts a FASTA file into a tab-separated text format (record ID and sequence).
+* **pairwise**: Computes dN/dS ratios between all pairs of sequences in a codon-aligned FASTA file.
+* **groupwise**: Computes dN/dS ratios between all sequences and a reference sequence (either from a separate file or extracted from a multiple sequence alignment).
 
 ---
 
@@ -24,51 +22,55 @@ This Python script processes FASTA files in different ways depending on the sele
 ## Usage
 
 ```bash
-python script.py --input <input_path> --output <output_directory> --mode <mode>
+python script.py <mode> [arguments]
 ```
 
-### Arguments
+### Modes and Arguments
 
-| Argument   | Description                                                    |
-| ---------- | -------------------------------------------------------------- |
-| `--input`  | Path to a FASTA file or directory (depending on mode)          |
-| `--output` | Path to the output directory                                   |
-| `--mode`   | Processing mode: `large`, `single`, `groupwise`, or `readable` |
-
----
-
-## Examples
-
-### Process all FASTA files in a directory (`large` mode)
+#### **pairwise**
 
 ```bash
-python script.py --input /path/to/folder --output /path/to/output --mode large
+python script.py pairwise input.fasta [-o OUTPUT_DIR] [-t THREADS] [--format FORMAT]
 ```
 
-### Process a single FASTA file (`single` mode)
+* `input.fasta`: Input codon alignment FASTA file.
+* `--format`: Output format: `long` (default) or `matrix`.
+* `-o`, `--output_dir`: Output directory (default: current directory).
+* `-t`, `--threads`: Number of threads for parallel processing (default: 1).
+
+#### **groupwise**
 
 ```bash
-python script.py --input file.fasta --output output_dir --mode single
+python script.py groupwise alignment.fasta reference.fasta [-o OUTPUT_DIR] [-t THREADS]
 ```
 
-### Group sequences by prefix (`groupwise` mode)
-
-```bash
-python script.py --input file.fasta --output output_dir --mode groupwise
-```
-
-### Convert FASTA to readable TSV format (`readable` mode)
-
-```bash
-python script.py --input file.fasta --output output_dir --mode readable
-```
+* `alignment.fasta`: Input codon alignment FASTA file.
+* `reference.fasta`: Either a single-sequence reference or an alignment used to infer the reference.
+* `-o`, `--output_dir`: Output directory (default: current directory).
+* `-t`, `--threads`: Number of threads for parallel processing (default: 1).
 
 ---
 
 ## Output
 
-* Output directory will contain `.fasta` or `.txt` files depending on the mode.
-* Filenames are based on record IDs or group prefixes.
+* Pairwise: CSV file containing all pairwise dN/dS values.
+* Groupwise: CSV file with dN/dS values comparing each sequence to the reference.
+
+---
+
+## Example Commands
+
+**Pairwise comparison:**
+
+```bash
+python script.py pairwise example_alignment.fasta -o results/ --format long
+```
+
+**Groupwise comparison:**
+
+```bash
+python script.py groupwise example_alignment.fasta ref_seq.fasta -o results/
+```
 
 ---
 
