@@ -3,14 +3,14 @@
 
 # Sequence Processing Script
 
-This Python script is a versatile tool for handling genomic FASTA files. It supports several modes for processing individual sequences, large collections, or groups of sequences in a readable format. The output is typically stored in a specified directory, optionally compressed into a `.tar.gz` archive.
+This Python script processes FASTA files in different ways depending on the selected mode. It supports batch processing of large directories, single-file extraction, groupwise organization, and converting FASTA to a more readable format.
 
 ## Features
 
-* **Large mode**: Processes all FASTA files in a directory and saves each sequence as a separate file.
-* **Single mode**: Processes a single FASTA file and saves each record as a separate file.
-* **Groupwise mode**: Groups FASTA records by a specified attribute (e.g., prefix) and writes them accordingly.
-* **Readable mode**: Converts a FASTA file into a more human-readable format (e.g., TSV with ID and sequence).
+* **large**: Processes all FASTA files in a given directory and writes each sequence to a separate file.
+* **single**: Extracts all records from a single FASTA file, writing each to a separate file using the record ID as the filename.
+* **groupwise**: Groups sequences in a single FASTA file by their prefix and writes grouped files to the output directory.
+* **readable**: Converts a FASTA file into a tab-separated text format (record ID and sequence).
 
 ---
 
@@ -24,60 +24,52 @@ This Python script is a versatile tool for handling genomic FASTA files. It supp
 ## Usage
 
 ```bash
-python script.py --input <input_path> --output <output_directory> --mode <mode> [--name <name>] [--compress]
+python script.py --input <input_path> --output <output_directory> --mode <mode>
 ```
 
 ### Arguments
 
-| Argument     | Description                                                      |
-| ------------ | ---------------------------------------------------------------- |
-| `--input`    | Path to the input FASTA file or directory                        |
-| `--output`   | Path to the output directory                                     |
-| `--mode`     | Mode of operation: `large`, `single`, `groupwise`, or `readable` |
-| `--name`     | Optional base name for the output files (used in single mode)    |
-| `--compress` | Optional flag to compress output directory into `.tar.gz` format |
+| Argument   | Description                                                    |
+| ---------- | -------------------------------------------------------------- |
+| `--input`  | Path to a FASTA file or directory (depending on mode)          |
+| `--output` | Path to the output directory                                   |
+| `--mode`   | Processing mode: `large`, `single`, `groupwise`, or `readable` |
 
 ---
 
 ## Examples
 
-### Large Mode
-
-Process all FASTA files in a directory:
+### Process all FASTA files in a directory (`large` mode)
 
 ```bash
-python script.py --input data/ --output output/ --mode large
+python script.py --input /path/to/folder --output /path/to/output --mode large
 ```
 
-### Single Mode
-
-Process one FASTA file and save records individually:
+### Process a single FASTA file (`single` mode)
 
 ```bash
-python script.py --input genome.fasta --output output/ --mode single --name genome_seq
+python script.py --input file.fasta --output output_dir --mode single
 ```
 
-### Groupwise Mode
-
-Process a FASTA file and group records by shared prefix or other logic:
+### Group sequences by prefix (`groupwise` mode)
 
 ```bash
-python script.py --input grouped_sequences.fasta --output output/ --mode groupwise
+python script.py --input file.fasta --output output_dir --mode groupwise
 ```
 
-### Readable Mode
-
-Convert a FASTA file into a tab-separated readable format:
+### Convert FASTA to readable TSV format (`readable` mode)
 
 ```bash
-python script.py --input genome.fasta --output output/ --mode readable
+python script.py --input file.fasta --output output_dir --mode readable
 ```
 
 ---
 
 ## Output
 
-* FASTA records are written as individual `.fasta` files named by their record ID.
-* If `--compress` is used, output is archived as a `.tar.gz` file.
+* Output directory will contain `.fasta` or `.txt` files depending on the mode.
+* Filenames are based on record IDs or group prefixes.
 
 ---
+
+
