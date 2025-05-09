@@ -8,7 +8,7 @@ This script calculates **dN/dS (nonsynonymous to synonymous substitution rate) r
 ## Modes
 
 * **pairwise**: Computes dN/dS ratios between all pairs of sequences in a codon-aligned FASTA file.
-* **groupwise**: Computes dN/dS ratios between all sequences and a reference sequence (either from a separate file or extracted from a multiple sequence alignment).
+* **groupwise**: Computes dN/dS ratios between all sequences and a reference sequence (either from a separate reference file or extracted from a multiple sequence alignment).
 
 ---
 
@@ -16,6 +16,7 @@ This script calculates **dN/dS (nonsynonymous to synonymous substitution rate) r
 
 * Python 3.6+
 * Biopython (`pip install biopython`)
+* iqtree 2.4.0
 
 ---
 
