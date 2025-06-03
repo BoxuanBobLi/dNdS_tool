@@ -52,7 +52,7 @@ python script.py groupwise alignment.fasta reference.fasta [-o OUTPUT_DIR] [-t T
 * `-t`, `--threads`: Number of threads for parallel processing (default: 1).
 * `--fast`: Use most frequent sequence as reference from MSA
 * `--consensus`: Use consensus sequence as reference from MSA
-* * `--log`: Directory to save log file (default: output_dir).
+* `--log`: Directory to save log file (default: output_dir).
 
 ---
 
