@@ -1,6 +1,4 @@
-Here’s a clean `README.md` draft for your workflow. I’ve written it in a typical Nextflow style: short intro, requirements, usage, outputs, and workflow outline. You can tweak the wording for your lab or publication.
 
----
 
 ````markdown
 # dN/dS Groupwise Workflow
