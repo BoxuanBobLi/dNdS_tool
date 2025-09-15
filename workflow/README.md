@@ -61,7 +61,7 @@ By default, paths are configured in `main.nf`:
 ```groovy
 params.work_dir       = '/YOUR/WORK/DIR'
 params.vf_list        = "${params.work_dir}/core_VF.csv"
-params.label_csv      = '/BLASTOUTPUT.csv'
+params.label_csv      = '/BLAST_OUTPUT.csv'
 params.align_script   = "${params.work_dir}/alignment.py"
 params.trait_file     = "${params.work_dir}/trait.csv"
 params.split_script   = "${params.work_dir}/split_alignment.py"
