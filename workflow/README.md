@@ -59,7 +59,7 @@ nextflow run main.nf -c nextflow.config
 By default, paths are configured in `main.nf`:
 
 ```groovy
-params.work_dir       = '/data1/B_Li/vfdb/workflow_clade'
+params.work_dir       = '/YOUR/WORK/DIR'
 params.vf_list        = "${params.work_dir}/core_VF.csv"
 params.label_csv      = '/data1/B_Li/vfdb/vfdb_95_output.csv'
 params.align_script   = "${params.work_dir}/alignment.py"
