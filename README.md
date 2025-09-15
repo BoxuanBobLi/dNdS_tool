@@ -23,7 +23,7 @@ This script calculates **dN/dS (nonsynonymous to synonymous substitution rate) r
 ## Usage
 
 ```bash
-python script.py <mode> [arguments]
+python two_mode_test.py <mode> [arguments]
 ```
 
 ### Modes and Arguments
@@ -31,7 +31,7 @@ python script.py <mode> [arguments]
 #### **pairwise**
 
 ```bash
-python script.py pairwise input.fasta [-o OUTPUT_DIR] [-t THREADS] [--format FORMAT]
+python two_mode_test.py pairwise input.fasta [-o OUTPUT_DIR] [-t THREADS] [--format FORMAT]
 ```
 
 * `input.fasta`: Input codon alignment FASTA file.
@@ -43,7 +43,7 @@ python script.py pairwise input.fasta [-o OUTPUT_DIR] [-t THREADS] [--format FOR
 #### **groupwise**
 
 ```bash
-python script.py groupwise alignment.fasta reference.fasta [-o OUTPUT_DIR] [-t THREADS]
+python two_mode_test.py groupwise alignment.fasta reference.fasta [-o OUTPUT_DIR] [-t THREADS]
 ```
 
 * `alignment.fasta`: Input codon alignment FASTA file.
@@ -68,13 +68,13 @@ python script.py groupwise alignment.fasta reference.fasta [-o OUTPUT_DIR] [-t T
 **Pairwise comparison:**
 
 ```bash
-python script.py pairwise example_alignment.fasta -o results/ --format long
+python two_mode_test.py pairwise example_alignment.fasta -o results/ --format long
 ```
 
 **Groupwise comparison:**
 
 ```bash
-python script.py groupwise example_alignment.fasta ref_seq.fasta -o results/ --consensus
+python two_mode_test.py groupwise example_alignment.fasta ref_seq.fasta -o results/ --consensus
 ```
 
 ---
