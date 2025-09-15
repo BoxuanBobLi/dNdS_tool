@@ -127,17 +127,3 @@ flowchart TD
 
 ---
 
-## Citation
-
-If you use this workflow in a publication, please cite:
-*Your lab, your institution, and/or the relevant scripts/tools (TranslatorX, Nextflow).*
-
----
-
-```
-
----
-
-Do you want me to also include **an example trait.csv format** (like `SampleID,Group` → `sample1,0` / `sample2,1`) in the README?
-```
-
