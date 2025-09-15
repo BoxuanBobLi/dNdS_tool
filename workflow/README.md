@@ -1,6 +1,3 @@
-
-
-````markdown
 # dN/dS Groupwise Workflow
 
 This Nextflow pipeline automates the calculation of **groupwise dN/dS ratios** for gene families across two groups of sequences. It takes virulence factor (VF) lists and reference CSVs, generates codon-aware alignments, splits them by traits, sanitizes inputs, and computes groupwise dN/dS values in both directions.
