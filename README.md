@@ -74,7 +74,7 @@ python two_mode_test.py pairwise example_alignment.fasta -o results/ --format lo
 **Groupwise comparison:**
 
 ```bash
-python two_mode_test.py groupwise example_alignment.fasta ref_seq.fasta -o results/ --consensus
+python two_mode_test.py groupwise example_alignment.fasta ref_seq.fasta -o results/ --consensus 
 ```
 
 ---
