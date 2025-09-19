@@ -11,7 +11,7 @@ This script calculates **dN/dS (nonsynonymous to synonymous substitution rate) r
 * **groupwise**: Computes dN/dS ratios between all sequences and a reference sequence (either from a separate reference file or extracted from a multiple sequence alignment).
 
 ---
-
+ 
 ## Requirements
 
 * Python 3.6+
