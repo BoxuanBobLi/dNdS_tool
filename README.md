@@ -12,7 +12,7 @@ This script calculates **dN/dS (nonsynonymous to synonymous substitution rate) r
 
 ---
   
-## Requirements
+## Requirements 
 
 * Python 3.6+
 * Biopython (`pip install biopython`)
