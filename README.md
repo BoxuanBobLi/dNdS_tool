@@ -59,7 +59,7 @@ python two_mode_test.py groupwise alignment.fasta reference.fasta [-o OUTPUT_DIR
 ## Output
 
 * Pairwise: CSV file containing all pairwise dN/dS values and error log file
-* Groupwise: CSV file with dN/dS values comparing each sequence to the reference, reference sequence generated, and error log file.
+* Groupwise: CSV file with dN/dS values comparing each sequence to the reference, reference sequence generated, and error log file. 
 
 ---
 
