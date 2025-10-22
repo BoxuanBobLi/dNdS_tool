@@ -101,7 +101,28 @@ process REMOVE_GAPS {
   """
 }
 
+// Step 3.5: deduplicate by header, keep longest sequence
+process DEDUP_LONGEST {
+  tag { fasta.baseName }
+  cpus 1
+  publishDir "${params.out_root}/fastas_dedup", mode: 'copy', overwrite: true
 
+  input:
+    path fasta
+
+  output:
+    path "*.dedup.fasta", emit: dedup_fastas
+
+  script:
+  """
+  set -euo pipefail
+  in="${fasta}"
+  base=\$(basename "${fasta}" .fasta)
+  out="\${base}.dedup.fasta"
+
+  python ${params.dedup_script} -i "\$in" -o "\$out"
+  """
+}
 
 // Step 4: TranslatorX codon-aware alignment
 process TRANSLATORX {
@@ -120,7 +141,7 @@ process TRANSLATORX {
   set -euo pipefail
   base=\$(basename "${fasta}" .fasta)
   mkdir -p "\${base}"
-  translatorx_vLocal.pl -i "${fasta}" -o "\${base}/\${base}" -p F -t T
+  translatorx_vLocal.pl -i "${fasta}" -o "\${base}/\${base}" -p F -t F -c 11
   """
 }
 
@@ -268,6 +289,64 @@ process DNDS_1v0 {
   """
 }
 
+process DNDS_0v0 {
+  tag { id }
+  cpus 32
+  publishDir(
+    "${params.out_root}/dnds_output/0_vs_0",
+    mode: 'copy',
+    overwrite: true,
+    pattern: "*_groupwise_dnds.csv",
+    saveAs: { fname -> "${id}_0v0_${fname}" }
+  )
+
+  input:
+  tuple val(id),
+        path(a, stageAs: 'G0.fasta'),
+        path(b, stageAs: 'G1.fasta')
+
+  output:
+  path "*_groupwise_dnds.csv"
+
+  script:
+  """
+  set -euo pipefail
+  python ${params.dnds_script} groupwise \\
+      G0.fasta \\
+      G0.fasta \\
+      -o . -t 32 --consensus
+  """
+}
+
+process DNDS_1v1 {
+  tag { id }
+  cpus 32
+  publishDir(
+    "${params.out_root}/dnds_output/1_vs_1",
+    mode: 'copy',
+    overwrite: true,
+    pattern: "*_groupwise_dnds.csv",
+    saveAs: { fname -> "${id}_1v1_${fname}" }
+  )
+
+  input:
+  tuple val(id),
+        path(a, stageAs: 'G0.fasta'),
+        path(b, stageAs: 'G1.fasta')
+
+  output:
+  path "*_groupwise_dnds.csv"
+
+  script:
+  """
+  set -euo pipefail
+  python ${params.dnds_script} groupwise \\
+      G1.fasta \\
+      G1.fasta \\
+      -o . -t 32 --consensus
+  """
+}
+
 process CLEANUP_OUTPUTS {
   tag 'final-cleanup'
   cpus 1
@@ -298,7 +377,8 @@ process CLEANUP_OUTPUTS {
          "\$ROOT/final_aln" \
          "\$ROOT/0_splitted_aln" \
          "\$ROOT/1_splitted_aln" \
-         "\$ROOT/sanitized"
+         "\$ROOT/sanitized" \
+          "\$ROOT/fastas_dedup"
 
   # Optionally remove reports if you don't want them
   # rm -rf "\$ROOT/.reports"
@@ -320,8 +400,11 @@ workflow {
   // 3) Remove gaps
   def nogap_fastas    = REMOVE_GAPS(raw_fastas)
 
-  // 4) TranslatorX
-  def final_aln_dirs  = TRANSLATORX(nogap_fastas)
+  // 3.5) Deduplicate headers (keep longest)
+  def dedup_fastas    = DEDUP_LONGEST(nogap_fastas)
+
+  // 4) TranslatorX on deduplicated FASTA
+  def final_aln_dirs  = TRANSLATORX(dedup_fastas)
 
   // 5) Split
   def (group0_fastas, group1_fastas) = SPLIT_ALIGNMENT(final_aln_dirs.collect())
@@ -332,12 +415,21 @@ workflow {
 
   // 7) Pair & run dN/dS
   def paired_fastas = pairByBase(g0_clean, g1_clean)
-  DNDS_0v1(paired_fastas)
-  DNDS_1v0(paired_fastas)
 
-  // ---- Barrier: wait for all DNDS files, then cleanup
-  // Mix the two output channels and collect to a single token
-  def barrier = out_0v1.mix(out_1v0).collect()
+  // Existing outputs
+  def out_0v1 = DNDS_0v1(paired_fastas)
+  def out_1v0 = DNDS_1v0(paired_fastas)
+
+  // New internal comparisons
+  def out_0v0 = DNDS_0v0(paired_fastas)
+  def out_1v1 = DNDS_1v1(paired_fastas)
+
+  // Barrier: wait for ALL outputs from all four directions
+  def barrier = out_0v1.flatten()
+                    .mix(out_1v0.flatten())
+                    .mix(out_0v0.flatten())
+                    .mix(out_1v1.flatten())
+                    .collect()
   CLEANUP_OUTPUTS(barrier)
 
 }
