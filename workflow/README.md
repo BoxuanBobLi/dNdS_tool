@@ -1,12 +1,12 @@
 
-# 🧬 dN/dS Groupwise Workflow
+#  dN/dS Groupwise Workflow
 
 This **Nextflow DSL2** pipeline automates the calculation of **groupwise dN/dS ratios** for gene families across two sequence groups.  
 It processes virulence factor (VF) lists and sequence mappings, generates codon-aware alignments, splits by traits, sanitizes FASTAs, and computes dN/dS in **four directions**.
 
 ---
 
-## ✨ Features
+##  Features
 
 - Extracts per-VF sequence sets from a label CSV (`GREP_VF`)
 - Converts per-VF CSVs to FASTA (`CSV_TO_FASTA`)
@@ -25,7 +25,7 @@ It processes virulence factor (VF) lists and sequence mappings, generates codon-
 
 ---
 
-## 🧩 Requirements
+##  Requirements
 
 - **Nextflow ≥ 24.10**
 - **Python 3** with dependencies used in:
@@ -37,7 +37,7 @@ It processes virulence factor (VF) lists and sequence mappings, generates codon-
 - Bash + standard Unix tools (grep, awk, etc.)
 - Optional: your own `sanitize_fasta.sh` script for FASTA header cleaning
 
-> ⚠️ Conda environments are **disabled** — ensure `translatorx_vLocal.pl` and Python scripts are callable in your environment.
+>  Conda environments are **disabled** — ensure `translatorx_vLocal.pl` and Python scripts are callable in your environment.
 
 ---
 
@@ -55,7 +55,7 @@ It processes virulence factor (VF) lists and sequence mappings, generates codon-
 
 ---
 
-## 🚀 Usage
+##  Usage
 
 Clone or copy this workflow and run:
 
@@ -87,7 +87,7 @@ or provide a `.json`/`.yml` with `-params-file`.
 
 ---
 
-## 📊 Output Structure
+##  Output Structure
 
 Final results are stored under:
 
@@ -121,7 +121,7 @@ Nextflow also produces reports:
 
 ---
 
-## 🧠 Workflow Overview
+##  Workflow Overview
 
 ```mermaid
 flowchart TD
@@ -144,7 +144,7 @@ flowchart TD
 
 ---
 
-## ⚙️ Notes
+##  Notes
 
 * Adjust CPU allocation per process to match your cluster.
 * The workflow can be parallelized across genes or VFs.
@@ -154,6 +154,4 @@ flowchart TD
 
 ---
 
-**Author:** Boxuan Li
-**Lab:** Brown Lab, Georgia Tech
-**Version:** v2.0 (Updated for DEDUP_LONGEST and internal comparisons)
+**Version:** v1.1 (Updated for DEDUP_LONGEST and internal comparisons)
