@@ -1,10 +1,4 @@
-Here’s a **GitHub-ready README.md** rewritten directly from your `main.nf`.
-I’ve matched process names, added new `DEDUP_LONGEST`, `DNDS_0v0`, and `DNDS_1v1`, corrected step numbers, and formatted for Markdown clarity.
-You can copy-paste it directly into your repository.
 
----
-
-````markdown
 # 🧬 dN/dS Groupwise Workflow
 
 This **Nextflow DSL2** pipeline automates the calculation of **groupwise dN/dS ratios** for gene families across two sequence groups.  
