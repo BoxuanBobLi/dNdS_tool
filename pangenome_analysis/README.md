@@ -1,6 +1,6 @@
 # VF Presence/Absence and Pangenome Analysis
 
-This folder contains four scripts used to calculate VF frequencies, map VF entries to PAO1 locus tags, remove redundant VF entries, and test for differences in VF presence/absence between Clade A and Clade B.
+This folder contains scripts used to calculate VF frequencies, map VF entries to PAO1 locus tags, remove redundant VF entries, test for differences in VF presence/absence between Clade A and Clade B, and visualize the enrichment results.
 
 ## Run Order
 
@@ -62,7 +62,7 @@ Main outputs:
 
 ### 4. `pangenome_analysis.R`
 
-Run this script last.
+Run this script fourth.
 
 Input:
 
@@ -99,6 +99,37 @@ Main outputs:
 
 `VF_enrichment_without_locus_tag.csv`
 
+---
+
+### 5. `plot.py`
+
+Run this script last.
+
+Input:
+
+`VF_presence_absence_enrichment_Clade_A_vs_B_all.csv`
+
+This script generates a volcano-style plot showing VF presence/absence enrichment between Clade A and Clade B.
+
+The x-axis shows the prevalence difference:
+
+`Clade A - Clade B`
+
+The y-axis shows:
+
+`-log10(BH-adjusted FDR)`
+
+The plot separates VFs into:
+
+- not significant
+- statistically significant but <5% prevalence difference
+- meaningfully enriched in Clade A
+- meaningfully enriched in Clade B
+
+Main output:
+
+`VF_enrichment_effect_size_FDR_volcano.png`
+
 ## Workflow
 
 ### Step 1
@@ -131,4 +162,16 @@ Main outputs:
 
 ↓
 
-VF presence/absence enrichment results
+`VF_presence_absence_enrichment_Clade_A_vs_B_all.csv`
+
+### Step 5
+
+`plot.py`
+
+↓
+
+`VF_enrichment_effect_size_FDR_volcano.png`
+
+## Enrichment Plot
+
+![VF presence/absence enrichment](VF_enrichment_effect_size_FDR_volcano.png)
