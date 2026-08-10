@@ -13,7 +13,7 @@ It first retrieves locus tag annotations directly from NCBI protein records. For
 
 ## Input
 
-- VFDB annotation CSV
+- `core_VF_labeled.csv`
 - PAO1 protein FASTA
 - PAO1 GFF
 
