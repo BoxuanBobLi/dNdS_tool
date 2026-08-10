@@ -1,15 +1,13 @@
-
-
 # dN/dS & MK Test Calculation Script
 
 This script calculates:
 
 * **dN/dS (nonsynonymous / synonymous substitution rate)** using codon-aligned FASTA files in **pairwise** and **groupwise** modes; and
-* **McDonald–Kreitman (MK) test** statistics using an **ingroup codon alignment** and a **reference** (either a single sequence or a consensus from an alignment).
 
-> **Important:** Run the workflow before performing any downstream analysis to ensure the `dnds_out` output folder and required dN/dS result files are generated.
+> **Important:** First, run the `locus_tag` mapping/filtering step on `core_VF.csv` to identify and remove redundant VF entries that map to the same locus tag. Then run the main workflow to generate the `dnds_output` directory and all required dN/dS result files before performing any downstream analyses in the `figures` folder.
 
 ---
+
 
 ## Modes
 
