@@ -550,29 +550,10 @@ Therefore, keep the intermediate files if those analyses still need to be perfor
 
 ### Cleanup warning
 
-In the current workflow code, the `rm -rf` cleanup command is commented/disabled. Therefore, the intermediate output folders are **not intentionally removed by the current version**.
+In the current workflow code, the `rm -rf` cleanup command is commented for intermediate output check. Therefore, the intermediate output folders are **not intentionally removed by the current version**. However, the intermediate files can occupy too much disk space. Choose to comment it depends on the situation.
 
 If cleanup is later enabled, make sure the entire `rm -rf` block is uncommented correctly rather than only uncommenting its first line.
 
-### Conda configuration
-
-The provided configuration currently contains both:
-
-```
-conda {
-  enabled = false
-}
-```
-
-and later:
-
-```
-conda {
-  enabled = true
-}
-```
-
-This should be cleaned up so that only the intended setting remains. The workflow itself does not define dedicated Conda environments for these helper processes, so the required tools should be available in the execution environment.
 
 ---
 
