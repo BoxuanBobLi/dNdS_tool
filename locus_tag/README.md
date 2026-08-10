@@ -17,7 +17,7 @@ It first retrieves locus tag annotations directly from NCBI protein records. For
 - PAO1 protein FASTA
 - PAO1 GFF
 
-Main output:
+## Main output
 
 `raw_vfdb_frequency_with_locus_tag.csv`
 
