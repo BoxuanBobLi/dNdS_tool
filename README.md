@@ -1,3 +1,22 @@
+# VF Evolution Analysis
+
+This repository contains a set of workflows and analysis scripts for studying the evolution and distribution of virulence factors across sequence groups.
+
+The analyses include:
+
+- identification and filtering of redundant VF entries using locus-tag mapping
+- codon-aware sequence alignment
+- pairwise and groupwise dN/dS calculation
+- between-group and within-group evolutionary comparisons
+- VF presence/absence and pangenome analysis
+- functional and gene-level downstream analyses
+- sequence heterogeneity analysis
+- generation of figures used for downstream interpretation
+
+The main dN/dS workflow is designed to compare evolutionary patterns between two predefined sequence groups while retaining both between-group and within-group comparisons.
+
+---
+
 # dN/dS Calculation Script
 
 This script calculates **dN/dS (nonsynonymous / synonymous substitution rate)** from codon-aligned FASTA files using either **pairwise** or **groupwise** comparisons.
