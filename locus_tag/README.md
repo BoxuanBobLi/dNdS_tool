@@ -17,6 +17,8 @@ It first retrieves locus tag annotations directly from NCBI protein records. For
 - PAO1 protein FASTA
 - PAO1 GFF
 
-## Output
+Main output:
 
-A CSV containing the original VFDB information together with the mapped `locus_tag` and the mapping method (`direct_ncbi_record` or `blastp_best_hit_to_PAO1`). :contentReference[oaicite:1]{index=1}
+`raw_vfdb_frequency_with_locus_tag.csv`
+
+This file contains the original VFDB information together with the mapped `locus_tag` and the mapping method (`direct_ncbi_record` or `blastp_best_hit_to_PAO1`).
