@@ -535,12 +535,11 @@ This workflow specifically uses the **consensus method** for all four dN/dS comp
 
 It does not use:
 
-* PAO1 reference
-* PA14 reference
 * most-frequent-sequence reference
 * IQ-TREE ancestral reference
 
 although `two_mode_test.py` supports the latter two alternatives when used separately. 
+If you want to use most-frequent-sequence reference or IQ-TREE ancestral reference make sure to edit the main.nf to enable the functions
 
 ### Intermediate files
 
