@@ -1,0 +1,27 @@
+=== AB vs AA ===
+Mean x = 0.105827
+Mean y = 0.091748
+Mean difference x-y = 0.014079
+Paired t-test p = 4.124e-02
+Wilcoxon signed-rank p = 2.038e-01
+
+=== BA vs BB ===
+Mean x = 0.095716
+Mean y = 0.091967
+Mean difference x-y = 0.003748
+Paired t-test p = 4.080e-01
+Wilcoxon signed-rank p = 8.746e-02
+
+=== Inter-clade average vs intra-clade average ===
+Mean x = 0.100771
+Mean y = 0.091858
+Mean difference x-y = 0.008914
+Paired t-test p = 5.332e-02
+Wilcoxon signed-rank p = 1.251e-01
+
+=== Pooled inter-clade vs pooled intra-clade ===
+Mean x = 0.100771
+Mean y = 0.091858
+Mean difference x-y = 0.008914
+Welch t-test p = 1.691e-01
+Mann-Whitney U p = 8.159e-01
