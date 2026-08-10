@@ -14,8 +14,11 @@ Before running these scripts, make sure the dN/dS workflows for all four methods
 Each method should have a dnds_output directory containing:
 
 0_vs_0/
+
 0_vs_1/
+
 1_vs_0/
+
 1_vs_1/
 
 ## Run Order
